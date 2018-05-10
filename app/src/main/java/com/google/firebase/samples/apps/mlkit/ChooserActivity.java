@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -42,10 +43,11 @@ public final class ChooserActivity extends AppCompatActivity
     implements OnRequestPermissionsResultCallback, AdapterView.OnItemClickListener {
   private static final String TAG = "ChooserActivity";
   private static final int PERMISSION_REQUESTS = 1;
+  public Button startButton;
 
   private static final Class<?>[] CLASSES =
       new Class<?>[] {
-        LivePreviewActivity.class, StillImageActivity.class,
+        LivePreviewActivity.class//, StillImageActivity.class,
       };
 
   private static final int[] DESCRIPTION_IDS =
@@ -59,6 +61,16 @@ public final class ChooserActivity extends AppCompatActivity
     Log.d(TAG, "onCreate");
 
     setContentView(R.layout.activity_chooser);
+
+    startButton = (Button) findViewById(R.id.start);
+
+    startButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Class<?> clicked = CLASSES[0];
+            startActivity(new Intent( getApplicationContext(), clicked));
+        }
+    });
 
     // Set up ListView and Adapter
     ListView listView = (ListView) findViewById(R.id.test_activity_list_view);
@@ -152,7 +164,8 @@ public final class ChooserActivity extends AppCompatActivity
         view = inflater.inflate(android.R.layout.simple_list_item_2, null);
       }
 
-      ((TextView) view.findViewById(android.R.id.text1)).setText(classes[position].getSimpleName());
+//      ((TextView) view.findViewById(android.R.id.text1)).setText(classes[position].getSimpleName());
+      ((TextView) view.findViewById(android.R.id.text1)).setText("START");
       ((TextView) view.findViewById(android.R.id.text2)).setText(descriptionIds[position]);
 
       return view;

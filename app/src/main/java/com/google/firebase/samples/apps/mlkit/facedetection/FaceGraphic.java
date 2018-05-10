@@ -35,7 +35,7 @@ public class FaceGraphic extends Graphic {
   private static final float BOX_STROKE_WIDTH = 5.0f;
 
   private static final int[] COLOR_CHOICES = {
-    Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.RED, Color.WHITE, Color.YELLOW
+    Color.BLUE //, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.RED, Color.WHITE, Color.YELLOW
   };
   private static int currentColorIndex = 0;
 
